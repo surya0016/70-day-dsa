@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Export</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.3.0/github-markdown-dark.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <style>
+      body {
+          background-color: #0d1117;
+          color: #c9d1d9;
+      }
+      .markdown-body {
+          box-sizing: border-box;
+          min-width: 200px;
+          max-width: 980px;
+          margin: 0 auto;
+          padding: 45px;
+          background-color: #0d1117;
+          color: #c9d1d9;
+      }
+      @media (max-width: 767px) {
+          .markdown-body {
+              padding: 15px;
+          }
+      }
+  </style>
+</head>
+<body>
+  <article class="markdown-body">
+      <h1>🗺️ Your Complete 70-Day DSA Roadmap (Detailed Edition)</h1>
+<p>Based on your assessment: <strong>Early Beginner | Python | 15 hrs/week | Interview-focused</strong></p>
+<hr>
+<h2>📐 How to Read This Roadmap</h2>
+<p>Each day has this structure:</p>
+<pre><code class="hljs plaintext">📖 Learn (20 min)  →  Concept / video / article
+💻 Implement (20 min)  →  Code the concept from scratch
+🏋️ Solve (60 min)  →  LeetCode / practice problems
+📝 Review (20 min)  →  Notes + mark problems for revision</code></pre><blockquote>
+<p><strong>Platform:</strong> Use <a href="https://leetcode.com">LeetCode</a> for all problems. I've included problem names + numbers.</p>
+</blockquote>
+<hr>
+<hr>
+<h1>🟢 MONTH 1: Pure Foundation Phase (Days 1–28)</h1>
+<hr>
+<h2>Week 1: Python for DSA + Arrays + Two Pointers (Days 1–7)</h2>
+<h3>🎯 Week Goal</h3>
+<blockquote>
+<p>Get fluent in Python lists, learn array patterns, master two-pointer technique</p>
+</blockquote>
+<hr>
+<h3>Day 1 — Python for DSA Crash Course</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Python lists: create, access, slice, modify
+   - for loops: range(), enumerate()
+   - while loops
+   - Functions: def, return, parameters
+   - Input/Output for competitive coding
+
+💻 Implement:
+   - Write a function that takes a list and prints each element with its index
+   - Write a function that returns the sum of all elements
+   - Write a function that returns the max element (without using max())
+
+🏋️ Solve:
+   1. Running Sum of 1D Array (LC #1480) — Easy
+   2. Richest Customer Wealth (LC #1672) — Easy
+   3. Kids With the Greatest Number of Candies (LC #1431) — Easy
+
+📝 Notes to write:
+   - Python list methods: append(), pop(), insert(), remove(), len()
+   - List slicing: arr[start:end:step]
+   - List comprehension: [x*2 for x in arr]</code></pre><p><strong>Key Python patterns to memorize:</strong></p>
+<pre><code class="hljs plaintext"># Pattern 1: Loop with index
+for i in range(len(arr)):
+    print(i, arr[i])
+
+# Pattern 2: Loop without index
+for num in arr:
+    print(num)
+
+# Pattern 3: Loop with both
+for i, num in enumerate(arr):
+    print(i, num)
+
+# Pattern 4: Swap two elements (no temp variable needed!)
+arr[i], arr[j] = arr[j], arr[i]
+
+# Pattern 5: Initialize array
+arr = [0] * n          # [0, 0, 0, ... n times]
+matrix = [[0]*cols for _ in range(rows)]  # 2D array</code></pre><hr>
+<h3>Day 2 — Array Basics: Traversal, Reverse, Rotate</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Time complexity: O(1), O(n), O(n²)
+   - Space complexity: in-place vs extra space
+   - Two-pointer concept: left and right moving inward
+
+💻 Implement:
+   - Reverse an array in-place (two pointers)
+   - Rotate array by k positions
+   - Find second largest element
+
+🏋️ Solve:
+   1. Reverse String (LC #344) — Easy
+   2. Rotate Array (LC #189) — Medium
+   3. Move Zeroes (LC #283) — Easy
+
+📝 Notes: Draw the two-pointer movement for reverse array</code></pre><p><strong>Core concept to understand:</strong></p>
+<pre><code class="hljs plaintext"># TWO POINTER — The foundation of everything
+# Rule: One pointer at start, one at end, move inward
+
+def reverse(arr):
+    left, right = 0, len(arr) - 1
+    while left &lt; right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+    return arr
+
+# VISUALIZATION:
+# [1, 2, 3, 4, 5]
+#  L              R    → swap 1,5 → [5, 2, 3, 4, 1]
+#     L        R       → swap 2,4 → [5, 4, 3, 2, 1]
+#        L=R           → STOP ✅</code></pre><hr>
+<h3>Day 3 — Prefix Sum &amp; Difference Array</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is prefix sum? Why is it useful?
+   - Building prefix sum array
+   - Range sum query in O(1) using prefix sum
+   - Difference array concept (for range updates)
+
+💻 Implement:
+   - Build prefix sum array from scratch
+   - Answer range sum queries using prefix sum
+   - Implement difference array for range additions
+
+🏋️ Solve:
+   1. Running Sum of 1D Array (LC #1480) — Easy (re-solve if needed)
+   2. Find Pivot Index (LC #724) — Easy
+   3. Subarray Sum Equals K (LC #560) — Medium
+
+📝 Notes: "Prefix sum = precompute cumulative sums so any range sum = O(1)"</code></pre><p><strong>Prefix Sum Pattern:</strong></p>
+<pre><code class="hljs plaintext"># PREFIX SUM — Precompute to answer range queries in O(1)
+
+def build_prefix_sum(arr):
+    prefix = [0] * (len(arr) + 1)
+    for i in range(len(arr)):
+        prefix[i + 1] = prefix[i] + arr[i]
+    return prefix
+
+# Range sum from index L to R (inclusive):
+# sum = prefix[R + 1] - prefix[L]
+
+# Example:
+# arr    = [2, 4, 1, 3, 5]
+# prefix = [0, 2, 6, 7, 10, 15]
+# Sum of arr[1..3] = prefix[4] - prefix[1] = 10 - 2 = 8
+# Verify: 4 + 1 + 3 = 8 ✅</code></pre><hr>
+<h3>Day 4 (Sunday) — Two Pointer Technique Deep Dive</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Two pointer types:
+     a) Opposite direction (left &amp; right)
+     b) Same direction (slow &amp; fast)
+   - When to use which?
+
+💻 Implement:
+   - Two Sum (sorted array version)
+   - Remove duplicates from sorted array
+   - Container with most water
+
+🏋️ Solve:
+   1. Two Sum II - Sorted (LC #167) — Medium
+   2. Remove Duplicates from Sorted Array (LC #26) — Easy
+   3. Container With Most Water (LC #11) — Medium
+   4. Valid Palindrome (LC #125) — Easy
+   5. 3Sum (LC #15) — Medium (stretch goal)
+
+📝 Notes: Draw diagrams for each pointer movement</code></pre><p><strong>Two Pointer Decision Framework:</strong></p>
+<pre><code class="hljs plaintext"># PATTERN 1: Opposite Direction (sorted array, palindrome)
+def two_sum_sorted(arr, target):
+    left, right = 0, len(arr) - 1
+    while left &lt; right:
+        current_sum = arr[left] + arr[right]
+        if current_sum == target:
+            return [left, right]
+        elif current_sum &lt; target:
+            left += 1      # need bigger sum
+        else:
+            right -= 1     # need smaller sum
+
+# PATTERN 2: Same Direction — Slow/Fast (remove duplicates)
+def remove_duplicates(arr):
+    if not arr:
+        return 0
+    slow = 0
+    for fast in range(1, len(arr)):
+        if arr[fast] != arr[slow]:
+            slow += 1
+            arr[slow] = arr[fast]
+    return slow + 1
+
+# WHEN TO USE WHAT:
+# Sorted array + find pair       → Opposite direction
+# Remove/partition in-place      → Same direction (slow/fast)
+# Palindrome check               → Opposite direction
+# Linked list cycle              → Same direction (slow/fast)</code></pre><hr>
+<h3>Day 5 — Sliding Window Basics (Fixed Size)</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is a sliding window?
+   - Fixed-size window: add right, remove left
+   - How it reduces O(n²) to O(n)
+
+💻 Implement:
+   - Maximum sum subarray of size k
+   - Average of all subarrays of size k
+
+🏋️ Solve:
+   1. Maximum Average Subarray I (LC #643) — Easy
+   2. Max Consecutive Ones III (LC #1004) — Medium
+   3. Contains Duplicate II (LC #219) — Easy
+
+📝 Notes: "Window = [left...right]. Slide right, shrink left. Never go back."</code></pre><p><strong>Sliding Window Template:</strong></p>
+<pre><code class="hljs plaintext"># FIXED SIZE SLIDING WINDOW
+
+def max_sum_subarray(arr, k):
+    # Step 1: Calculate sum of first window
+    window_sum = sum(arr[:k])
+    max_sum = window_sum
+
+    # Step 2: Slide — add right element, remove left element
+    for i in range(k, len(arr)):
+        window_sum += arr[i]       # add new right
+        window_sum -= arr[i - k]   # remove old left
+        max_sum = max(max_sum, window_sum)
+
+    return max_sum
+
+# arr = [2, 1, 5, 1, 3, 2], k = 3
+# Window 1: [2,1,5] = 8
+# Window 2: [1,5,1] = 7   (added 1, removed 2)
+# Window 3: [5,1,3] = 9   (added 3, removed 1) ← MAX
+# Window 4: [1,3,2] = 6   (added 2, removed 5)
+# Answer: 9 ✅</code></pre><hr>
+<h3>Day 6 — Sliding Window (Variable Size)</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Variable-size window: expand right, shrink left when condition breaks
+   - The "shrink" condition is the key difference
+
+💻 Implement:
+   - Longest substring without repeating characters
+   - Smallest subarray with sum ≥ target
+
+🏋️ Solve:
+   1. Longest Substring Without Repeating Characters (LC #3) — Medium
+   2. Minimum Size Subarray Sum (LC #209) — Medium
+   3. Fruit Into Baskets (LC #904) — Medium
+
+📝 Notes: Fixed window = size known. Variable = size depends on condition.</code></pre><p><strong>Variable Window Template:</strong></p>
+<pre><code class="hljs plaintext"># VARIABLE SIZE SLIDING WINDOW TEMPLATE
+
+def longest_substring_no_repeat(s):
+    seen = set()
+    left = 0
+    max_len = 0
+
+    for right in range(len(s)):
+        # Shrink window while condition is violated
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+
+        # Expand window
+        seen.add(s[right])
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
+
+# TEMPLATE (memorize this!):
+# left = 0
+# for right in range(n):
+#     # add arr[right] to window
+#     while WINDOW_IS_INVALID:
+#         # remove arr[left] from window
+#         left += 1
+#     # update answer with current window</code></pre><hr>
+<h3>Day 7 — Week 1 Revision Day 🔁</h3>
+<pre><code class="hljs plaintext">📖 Revise:
+   - Re-read all your notes from Days 1–6
+   - Can you explain: two pointers, prefix sum, sliding window?
+
+🏋️ Re-solve (WITHOUT looking at solutions):
+   1. Move Zeroes (LC #283)
+   2. Two Sum II (LC #167)
+   3. Longest Substring Without Repeating (LC #3)
+   4. Any 1 problem you struggled with
+
+📝 Pattern Summary to write:
+   - "Array reverse → two pointers from ends"
+   - "Range sum query → prefix sum"
+   - "Subarray of fixed size → fixed sliding window"
+   - "Longest/shortest subarray with condition → variable sliding window"</code></pre><blockquote>
+<h3>✅ Week 1 Checkpoint: You should be able to...</h3>
+<ul>
+<li>Write Python functions confidently</li>
+<li>Reverse an array, find prefix sums</li>
+<li>Use two pointers on sorted arrays</li>
+<li>Apply sliding window (fixed &amp; variable)</li>
+<li>Solved <strong>~18 problems</strong></li>
+</ul>
+</blockquote>
+<hr>
+<h2>Week 2: Strings + Hashing (Days 8–14)</h2>
+<h3>🎯 Week Goal</h3>
+<blockquote>
+<p>Master HashMaps/Sets, frequency counting, anagram detection, substring problems</p>
+</blockquote>
+<hr>
+<h3>Day 8 — Python Strings + Dictionary/Set</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Python strings: immutable, slicing, methods
+   - str methods: lower(), upper(), isalpha(), isdigit(), split(), join()
+   - dict basics: create, access, get(), keys(), values(), items()
+   - set basics: add(), remove(), in operator
+   - defaultdict and Counter from collections
+
+💻 Implement:
+   - Count frequency of each character in a string
+   - Check if two strings are anagrams
+   - Find first non-repeating character
+
+🏋️ Solve:
+   1. Valid Anagram (LC #242) — Easy
+   2. First Unique Character in a String (LC #387) — Easy
+   3. Ransom Note (LC #383) — Easy
+
+📝 Notes: dict/set lookup = O(1) vs list lookup = O(n)</code></pre><p><strong>Python Hashing Essentials:</strong></p>
+<pre><code class="hljs plaintext">from collections import Counter, defaultdict
+
+# METHOD 1: Manual frequency count
+def count_freq(s):
+    freq = {}
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1  # .get() avoids KeyError
+    return freq
+
+# METHOD 2: Using Counter (shortcut)
+freq = Counter("banana")  # Counter({'a': 3, 'n': 2, 'b': 1})
+
+# METHOD 3: defaultdict (auto-initializes missing keys)
+freq = defaultdict(int)
+for char in "banana":
+    freq[char] += 1  # No KeyError even for new keys
+
+# SET — For "have I seen this before?" questions
+seen = set()
+for num in [2, 5, 1, 2, 3]:
+    if num in seen:        # O(1) lookup!
+        print(f"Duplicate: {num}")
+    seen.add(num)
+
+# WHEN TO USE WHAT:
+# "Count occurrences"           → dict / Counter
+# "Seen before? Yes/No"        → set
+# "Map one thing to another"   → dict</code></pre><hr>
+<h3>Day 9 — HashMap/HashSet Deep Dive</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Two Sum (unsorted) using HashMap
+   - How HashMap gives O(1) lookup
+   - Complement pattern: target - current
+
+💻 Implement:
+   - Two Sum using HashMap (store value → index)
+   - Find all pairs that sum to target
+   - Intersection of two arrays
+
+🏋️ Solve:
+   1. Two Sum (LC #1) — Easy ⭐ (most famous problem!)
+   2. Intersection of Two Arrays II (LC #350) — Easy
+   3. Contains Duplicate (LC #217) — Easy
+   4. Happy Number (LC #202) — Easy
+
+📝 Notes: "Two Sum pattern: for each num, check if (target - num) exists in map"</code></pre><p><strong>The Two Sum Pattern (you'll use this everywhere):</strong></p>
+<pre><code class="hljs plaintext"># TWO SUM — The most important beginner pattern
+
+def two_sum(nums, target):
+    seen = {}  # value → index
+
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+
+    return []
+
+# WHY THIS WORKS:
+# nums = [2, 7, 11, 15], target = 9
+# i=0: num=2, complement=7, seen={} → not found, add {2:0}
+# i=1: num=7, complement=2, seen={2:0} → FOUND! return [0, 1]</code></pre><hr>
+<h3>Day 10 — Anagram Patterns</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is an anagram? Same characters, different order
+   - Two approaches: sorting vs frequency map
+   - Sliding window + frequency = powerful combo
+
+💻 Implement:
+   - Check if two strings are anagrams (both methods)
+   - Group anagrams by sorted key
+   - Find all anagram substrings
+
+🏋️ Solve:
+   1. Valid Anagram (LC #242) — Easy (re-solve with both methods)
+   2. Group Anagrams (LC #49) — Medium ⭐
+   3. Find All Anagrams in a String (LC #438) — Medium
+
+📝 Notes: "Anagram check: Counter(s) == Counter(t) OR sorted(s) == sorted(t)"</code></pre><hr>
+<h3>Day 11 (Sunday) — Substring Problems + Practice</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Sliding window + hashmap for substring problems
+   - How to track character counts in a window
+
+💻 Implement:
+   - Longest substring with at most K distinct characters
+   - Minimum window substring (approach only, solve later)
+
+🏋️ Solve:
+   1. Longest Substring Without Repeating Characters (LC #3) — Medium (re-solve)
+   2. Permutation in String (LC #567) — Medium
+   3. Minimum Window Substring (LC #76) — Hard (attempt for 20 min)
+   4. Longest Repeating Character Replacement (LC #424) — Medium
+   5. Isomorphic Strings (LC #205) — Easy
+
+📝 Notes: Map the substring patterns to sliding window types</code></pre><hr>
+<h3>Day 12 — More Hashing Problems</h3>
+<pre><code class="hljs plaintext">🏋️ Solve (pure practice day):
+   1. Top K Frequent Elements (LC #347) — Medium
+   2. Product of Array Except Self (LC #238) — Medium ⭐
+   3. Longest Consecutive Sequence (LC #128) — Medium ⭐
+   4. Encode and Decode Strings (LC #271) — Medium (if available)
+
+📝 Notes: Write down the pattern used for each problem</code></pre><hr>
+<h3>Day 13 — Mixed Array + String Problems</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Best Time to Buy and Sell Stock (LC #121) — Easy ⭐
+   2. Majority Element (LC #169) — Easy
+   3. Maximum Product Subarray (LC #152) — Medium
+   4. Word Pattern (LC #290) — Easy
+
+📝 Notes: Best Time to Buy Stock = "track minimum so far, calculate profit"</code></pre><hr>
+<h3>Day 14 — Week 2 Revision 🔁</h3>
+<pre><code class="hljs plaintext">📖 Revise: All notes from Days 8–13
+
+🏋️ Re-solve (no solutions):
+   1. Two Sum (LC #1)
+   2. Group Anagrams (LC #49)
+   3. Longest Consecutive Sequence (LC #128)
+   4. Best Time to Buy and Sell Stock (LC #121)
+
+📝 Write a cheat sheet:
+   - "Find duplicate → set"
+   - "Count frequency → Counter/dict"
+   - "Two Sum pattern → complement in map"
+   - "Anagram → sorted() or Counter()"
+   - "Substring with condition → sliding window + map"</code></pre><blockquote>
+<h3>✅ Week 2 Checkpoint: <del>20 more problems solved (</del>38 total)</h3>
+<ul>
+<li>Use HashMap/Set fluently</li>
+<li>Solve Two Sum variants</li>
+<li>Handle anagram and substring problems</li>
+</ul>
+</blockquote>
+<hr>
+<h2>Week 3: Linked List + Stack + Queue (Days 15–21)</h2>
+<h3>🎯 Week Goal</h3>
+<blockquote>
+<p>Build data structures from scratch, learn when to use stack vs queue</p>
+</blockquote>
+<hr>
+<h3>Day 15 — Linked List from Scratch</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is a linked list? Node → next → next → None
+   - Singly linked list: insert, delete, traverse
+   - Array vs Linked List: when to use which?
+
+💻 Implement (build everything from scratch!):
+   - Node class
+   - LinkedList class: append, prepend, delete, print, length
+
+🏋️ Solve:
+   1. Design Linked List (LC #707) — Medium (this IS your implementation)
+   2. Reverse Linked List (LC #206) — Easy ⭐
+   3. Middle of the Linked List (LC #876) — Easy
+
+📝 Notes: Draw the pointer changes for each operation</code></pre><p><strong>Linked List Foundation:</strong></p>
+<pre><code class="hljs plaintext"># BUILD A LINKED LIST FROM SCRATCH
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+# TRAVERSAL
+def print_list(head):
+    current = head
+    while current:
+        print(current.val, end=" → ")
+        current = current.next
+    print("None")
+
+# REVERSE (most important LL problem!)
+def reverse_list(head):
+    prev = None
+    current = head
+    while current:
+        next_node = current.next   # save next
+        current.next = prev        # reverse pointer
+        prev = current             # move prev forward
+        current = next_node        # move current forward
+    return prev                    # prev is new head
+
+# VISUALIZATION:
+# 1 → 2 → 3 → None
+#
+# Step 1: prev=None, curr=1
+#         None ← 1    2 → 3 → None
+# Step 2: prev=1, curr=2
+#         None ← 1 ← 2    3 → None
+# Step 3: prev=2, curr=3
+#         None ← 1 ← 2 ← 3
+# Return prev (3) → 3 → 2 → 1 → None ✅</code></pre><hr>
+<h3>Day 16 — Fast &amp; Slow Pointer + Reverse Linked List</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Floyd's fast &amp; slow pointer technique
+   - Fast moves 2 steps, slow moves 1 step
+   - When fast reaches end, slow is at middle
+
+💻 Implement:
+   - Find middle of linked list
+   - Detect if linked list has a cycle
+
+🏋️ Solve:
+   1. Linked List Cycle (LC #141) — Easy ⭐
+   2. Linked List Cycle II (LC #142) — Medium
+   3. Palindrome Linked List (LC #234) — Easy
+   4. Remove Nth Node From End (LC #19) — Medium ⭐
+
+📝 Notes: "Fast/Slow: middle detection, cycle detection, palindrome check"</code></pre><hr>
+<h3>Day 17 — More Linked List Problems</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Merge two sorted linked lists
+   - Dummy node technique (simplifies edge cases!)
+
+💻 Implement:
+   - Merge two sorted lists using dummy node
+   - Reorder list
+
+🏋️ Solve:
+   1. Merge Two Sorted Lists (LC #21) — Easy ⭐
+   2. Reorder List (LC #143) — Medium
+   3. Remove Duplicates from Sorted List (LC #83) — Easy
+   4. Add Two Numbers (LC #2) — Medium
+
+📝 Notes: "Dummy node = create fake head to avoid null checks"</code></pre><hr>
+<h3>Day 18 (Sunday) — Stack Fundamentals + Monotonic Stack</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Stack: LIFO — push, pop, peek
+   - Python list as stack: append() = push, pop() = pop
+   - Monotonic stack: maintain increasing/decreasing order
+   - Use cases: next greater element, valid parentheses
+
+💻 Implement:
+   - Stack using Python list
+   - Valid parentheses checker
+   - Next greater element
+
+🏋️ Solve:
+   1. Valid Parentheses (LC #20) — Easy ⭐
+   2. Min Stack (LC #155) — Medium ⭐
+   3. Next Greater Element I (LC #496) — Easy
+   4. Daily Temperatures (LC #739) — Medium ⭐
+   5. Evaluate Reverse Polish Notation (LC #150) — Medium
+
+📝 Notes: "Stack = undo operations, matching brackets, next greater/smaller"</code></pre><p><strong>Stack Patterns:</strong></p>
+<pre><code class="hljs plaintext"># PATTERN 1: Valid Parentheses
+def is_valid(s):
+    stack = []
+    mapping = {')': '(', ']': '[', '}': '{'}
+    for char in s:
+        if char in mapping:
+            if not stack or stack[-1] != mapping[char]:
+                return False
+            stack.pop()
+        else:
+            stack.append(char)
+    return len(stack) == 0
+
+# PATTERN 2: Monotonic Stack — Next Greater Element
+def next_greater(nums):
+    result = [-1] * len(nums)
+    stack = []  # stores indices
+    for i in range(len(nums)):
+        while stack and nums[i] &gt; nums[stack[-1]]:
+            idx = stack.pop()
+            result[idx] = nums[i]
+        stack.append(i)
+    return result
+
+# nums = [2, 1, 2, 4, 3]
+# result = [4, 2, 4, -1, -1]</code></pre><hr>
+<h3>Day 19 — Queue Design + Stack/Queue Conversions</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Queue: FIFO — enqueue, dequeue
+   - Python: collections.deque (double-ended queue)
+   - Implement stack using queues &amp; vice versa
+
+💻 Implement:
+   - Queue using deque
+   - Stack using two queues
+
+🏋️ Solve:
+   1. Implement Stack using Queues (LC #225) — Easy
+   2. Implement Queue using Stacks (LC #232) — Easy
+   3. Number of Recent Calls (LC #933) — Easy
+
+📝 Notes: "Use deque for queue (O(1) both ends), list for stack"</code></pre><hr>
+<h3>Day 20 — Mixed Practice (LL + Stack)</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Flatten Nested List Iterator (LC #341) — Medium
+   2. Car Fleet (LC #853) — Medium
+   3. Intersection of Two Linked Lists (LC #160) — Easy
+   4. Sort List (LC #148) — Medium (stretch)
+
+📝 Review all LL and Stack patterns</code></pre><hr>
+<h3>Day 21 — Week 3 Revision 🔁</h3>
+<pre><code class="hljs plaintext">📖 Revise: All notes from Days 15–20
+
+🏋️ Re-solve:
+   1. Reverse Linked List (LC #206)
+   2. Valid Parentheses (LC #20)
+   3. Daily Temperatures (LC #739)
+   4. Merge Two Sorted Lists (LC #21)
+
+📝 Pattern cheat sheet:
+   - "Linked list manipulation → draw pointers before coding"
+   - "Reverse LL → prev/curr/next three-pointer technique"
+   - "Find middle → fast/slow pointer"
+   - "Matching/nesting → stack"
+   - "Next greater/smaller → monotonic stack"</code></pre><blockquote>
+<h3>✅ Week 3 Checkpoint: <del>18 more problems (</del>56 total)</h3>
+</blockquote>
+<hr>
+<h2>Week 4: Binary Search + Basic Recursion (Days 22–28)</h2>
+<h3>🎯 Week Goal</h3>
+<blockquote>
+<p>Master binary search patterns, understand recursion &amp; backtracking basics</p>
+</blockquote>
+<hr>
+<h3>Day 22 — Binary Search Fundamentals</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is binary search? Why O(log n)?
+   - The key insight: eliminate half each step
+   - Three variants: exact match, lower bound, upper bound
+   - Common pitfall: integer overflow (mid = left + (right-left)//2)
+
+💻 Implement:
+   - Classic binary search
+   - First occurrence of target
+   - Last occurrence of target
+
+🏋️ Solve:
+   1. Binary Search (LC #704) — Easy ⭐
+   2. Search Insert Position (LC #35) — Easy
+   3. Find First and Last Position (LC #34) — Medium ⭐
+   4. Sqrt(x) (LC #69) — Easy
+
+📝 Notes: "Binary search = sorted + eliminate half = O(log n)"</code></pre><p><strong>Binary Search Templates (memorize both):</strong></p>
+<pre><code class="hljs plaintext"># TEMPLATE 1: Exact match
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left &lt;= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# TEMPLATE 2: First occurrence (lower bound)
+def first_occurrence(arr, target):
+    left, right = 0, len(arr) - 1
+    result = -1
+    while left &lt;= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            result = mid
+            right = mid - 1     # keep searching LEFT
+        elif arr[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return result
+
+# TEMPLATE 3: Last occurrence (upper bound)
+def last_occurrence(arr, target):
+    left, right = 0, len(arr) - 1
+    result = -1
+    while left &lt;= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            result = mid
+            left = mid + 1      # keep searching RIGHT
+        elif arr[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return result</code></pre><hr>
+<h3>Day 23 — Binary Search on Rotated Arrays + Search Space</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Search in rotated sorted array
+   - Binary search on answer (search space reduction)
+   - "Search space" = the range of possible answers
+
+💻 Implement:
+   - Search in rotated sorted array
+   - Find minimum in rotated sorted array
+
+🏋️ Solve:
+   1. Search in Rotated Sorted Array (LC #33) — Medium ⭐
+   2. Find Minimum in Rotated Sorted Array (LC #153) — Medium
+   3. Search a 2D Matrix (LC #74) — Medium
+   4. Koko Eating Bananas (LC #875) — Medium ⭐
+
+📝 Notes: "Rotated array: one half is always sorted — check which half"</code></pre><hr>
+<h3>Day 24 — More Binary Search Problems</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Find Peak Element (LC #162) — Medium
+   2. Capacity to Ship Packages (LC #1011) — Medium
+   3. Time Based Key-Value Store (LC #981) — Medium
+   4. Median of Two Sorted Arrays (LC #4) — Hard (attempt 20 min only)
+
+📝 Notes: "Binary search on answer: guess answer → check if feasible → adjust"</code></pre><hr>
+<h3>Day 25 (Sunday) — Recursion Fundamentals</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is recursion? Function calling itself
+   - Base case (when to stop) vs recursive case
+   - Call stack visualization
+   - How recursion uses memory (stack frames)
+
+💻 Implement:
+   - Factorial
+   - Fibonacci
+   - Sum of digits
+   - Power function (x^n)
+   - Print 1 to N using recursion (no loops!)
+
+🏋️ Solve:
+   1. Pow(x, n) (LC #50) — Medium
+   2. Fibonacci Number (LC #509) — Easy
+   3. Climbing Stairs (LC #70) — Easy ⭐
+   4. Reverse String using recursion (LC #344) — Easy
+
+📝 Notes: "Every recursion needs: 1) Base case 2) Progress toward base case"</code></pre><p><strong>Recursion Visualization:</strong></p>
+<pre><code class="hljs plaintext"># UNDERSTAND THE CALL STACK
+
+def factorial(n):
+    if n &lt;= 1:          # Base case
+        return 1
+    return n * factorial(n - 1)  # Recursive case
+
+# factorial(4) call stack:
+# factorial(4) → 4 * factorial(3)
+#                     factorial(3) → 3 * factorial(2)
+#                                         factorial(2) → 2 * factorial(1)
+#                                                             factorial(1) → 1 (BASE CASE!)
+#                                                        2 * 1 = 2
+#                                    3 * 2 = 6
+#                4 * 6 = 24
+# Answer: 24 ✅
+
+# YOUR Q10 ANSWER EXPLAINED:
+def f(n):
+    if n == 0: return
+    print(n)          # GOING DOWN
+    f(n-1)
+    print(n)          # COMING BACK UP
+
+# f(3) prints: 3 2 1 1 2 3
+# Going down: 3, 2, 1
+# Coming back up: 1, 2, 3</code></pre><hr>
+<h3>Day 26 — Backtracking</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Backtracking = recursion + "undo" choices
+   - Decision tree: choose → explore → un-choose
+   - Template: make choice, recurse, undo choice
+
+💻 Implement:
+   - Generate all subsets
+   - Generate all permutations
+
+🏋️ Solve:
+   1. Subsets (LC #78) — Medium ⭐
+   2. Permutations (LC #46) — Medium ⭐
+   3. Combination Sum (LC #39) — Medium
+   4. Letter Combinations of Phone (LC #17) — Medium
+
+📝 Notes: Draw the decision tree for subsets of [1,2,3]</code></pre><p><strong>Backtracking Template:</strong></p>
+<pre><code class="hljs plaintext"># BACKTRACKING TEMPLATE (memorize this!)
+
+def subsets(nums):
+    result = []
+
+    def backtrack(start, current):
+        result.append(current[:])  # Add copy of current subset
+
+        for i in range(start, len(nums)):
+            current.append(nums[i])    # CHOOSE
+            backtrack(i + 1, current)  # EXPLORE
+            current.pop()             # UN-CHOOSE (backtrack!)
+
+    backtrack(0, [])
+    return result
+
+# subsets([1,2,3]) → [[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]
+
+# DECISION TREE:
+#                    []
+#           /        |        \
+#         [1]       [2]      [3]
+#        /   \       |
+#     [1,2]  [1,3]  [2,3]
+#      |
+#   [1,2,3]</code></pre><hr>
+<h3>Day 27 — Divide and Conquer</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Divide and conquer: break → solve → combine
+   - Merge sort: split, sort halves, merge
+   - Quick sort concept
+
+💻 Implement:
+   - Merge sort from scratch
+   - Count inversions (merge sort application)
+
+🏋️ Solve:
+   1. Sort an Array (LC #912) — Medium (use merge sort)
+   2. Merge Sorted Array (LC #88) — Easy
+   3. Sort Colors (LC #75) — Medium
+
+📝 Notes: "Merge sort: split in half → sort each → merge = O(n log n)"</code></pre><hr>
+<h3>Day 28 — Month 1 MEGA Revision 🔁🔁</h3>
+<pre><code class="hljs plaintext">📖 FULL REVISION:
+   - Re-read ALL notes from 4 weeks
+   - Review your problem-solving spreadsheet
+
+🏋️ Re-solve these 8 KEY problems (must solve all alone):
+   1. Two Sum (LC #1)
+   2. Best Time to Buy and Sell Stock (LC #121)
+   3. Longest Substring Without Repeating (LC #3)
+   4. Reverse Linked List (LC #206)
+   5. Valid Parentheses (LC #20)
+   6. Binary Search (LC #704)
+   7. Subsets (LC #78)
+   8. Daily Temperatures (LC #739)
+
+📝 Write your "Month 1 Pattern Bible" — all patterns in one page</code></pre><blockquote>
+<h3>✅ Month 1 Complete: ~75 problems solved</h3>
+<p>You now have a solid foundation in arrays, strings, hashing, linked lists, stacks, binary search, recursion, and backtracking!</p>
+</blockquote>
+<hr>
+<hr>
+<h1>🟡 MONTH 2: Core DSA Phase (Days 29–49)</h1>
+<hr>
+<h2>Week 5: Trees &amp; Traversals (Days 29–35)</h2>
+<h3>Day 29 — Binary Tree Basics</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Tree terminology: root, leaf, height, depth, parent, child
+   - Binary tree: each node has at most 2 children
+   - TreeNode class in Python
+
+💻 Implement:
+   - TreeNode class
+   - Insert nodes manually
+   - Inorder, Preorder, Postorder traversal (recursive)
+
+🏋️ Solve:
+   1. Binary Tree Inorder Traversal (LC #94) — Easy
+   2. Binary Tree Preorder Traversal (LC #144) — Easy
+   3. Binary Tree Postorder Traversal (LC #145) — Easy</code></pre><p><strong>Tree Traversals (the foundation):</strong></p>
+<pre><code class="hljs plaintext">class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# INORDER: Left → Root → Right (gives sorted order for BST!)
+def inorder(root):
+    if not root:
+        return
+    inorder(root.left)
+    print(root.val)
+    inorder(root.right)
+
+# PREORDER: Root → Left → Right (good for copying tree)
+def preorder(root):
+    if not root:
+        return
+    print(root.val)
+    preorder(root.left)
+    preorder(root.right)
+
+# POSTORDER: Left → Right → Root (good for deleting tree)
+def postorder(root):
+    if not root:
+        return
+    postorder(root.left)
+    postorder(root.right)
+    print(root.val)
+
+# LEVEL ORDER (BFS): Use a queue!
+from collections import deque
+def level_order(root):
+    if not root:
+        return []
+    result = []
+    queue = deque([root])
+    while queue:
+        level = []
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            level.append(node.val)
+            if node.left:  queue.append(node.left)
+            if node.right: queue.append(node.right)
+        result.append(level)
+    return result</code></pre><hr>
+<h3>Day 30 — Level Order + Tree Properties</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Binary Tree Level Order Traversal (LC #102) — Medium ⭐
+   2. Maximum Depth of Binary Tree (LC #104) — Easy ⭐
+   3. Same Tree (LC #100) — Easy
+   4. Symmetric Tree (LC #101) — Easy
+   5. Invert Binary Tree (LC #226) — Easy ⭐</code></pre><hr>
+<h3>Day 31 — Height, Diameter, Balanced Tree</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Diameter of Binary Tree (LC #543) — Easy ⭐
+   2. Balanced Binary Tree (LC #110) — Easy
+   3. Subtree of Another Tree (LC #572) — Easy
+   4. Count Good Nodes in Binary Tree (LC #1448) — Medium</code></pre><hr>
+<h3>Day 32 (Sunday) — LCA + Path Sum + Construction</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Lowest Common Ancestor of BST (LC #235) — Medium ⭐
+   2. Path Sum (LC #112) — Easy
+   3. Path Sum II (LC #113) — Medium
+   4. Construct Binary Tree from Preorder and Inorder (LC #105) — Medium ⭐
+   5. Binary Tree Right Side View (LC #199) — Medium</code></pre><hr>
+<h3>Day 33 — Validate BST + BST Operations</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - BST property: left &lt; root &lt; right (for all subtrees)
+   - Inorder of BST = sorted!
+   - Search, insert, delete in BST
+
+🏋️ Solve:
+   1. Validate Binary Search Tree (LC #98) — Medium ⭐
+   2. Kth Smallest Element in a BST (LC #230) — Medium ⭐
+   3. Lowest Common Ancestor of Binary Tree (LC #236) — Medium
+   4. Binary Tree Maximum Path Sum (LC #124) — Hard</code></pre><hr>
+<h3>Day 34 — Serialize/Deserialize + Practice</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Serialize and Deserialize Binary Tree (LC #297) — Hard
+   2. Word Search (LC #79) — Medium (backtracking on grid)
+   3. Any 2 tree problems you haven't solved
+
+📝 Review: Can you implement all 4 traversals from memory?</code></pre><hr>
+<h3>Day 35 — Week 5 Revision 🔁</h3>
+<pre><code class="hljs plaintext">Re-solve:
+   1. Binary Tree Level Order (LC #102)
+   2. Maximum Depth (LC #104)
+   3. Validate BST (LC #98)
+   4. Lowest Common Ancestor (LC #236)</code></pre><blockquote>
+<h3>✅ Week 5 Checkpoint: <del>20 more problems (</del>95 total)</h3>
+</blockquote>
+<hr>
+<h2>Week 6: BST + Heaps / Priority Queue (Days 36–42)</h2>
+<h3>Day 36 — BST Deep Dive</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Convert Sorted Array to BST (LC #108) — Easy
+   2. Delete Node in BST (LC #450) — Medium
+   3. Trim a BST (LC #669) — Medium
+   4. Insert into a BST (LC #701) — Medium</code></pre><h3>Day 37 — Heaps / Priority Queue Introduction</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is a heap? Min-heap vs Max-heap
+   - Python heapq module (min-heap by default)
+   - heappush, heappop, heapify
+   - For max-heap: negate values!
+
+💻 Implement:
+   - Use heapq to find K largest elements
+   - Understand heapify = O(n)
+
+🏋️ Solve:
+   1. Kth Largest Element in an Array (LC #215) — Medium ⭐
+   2. Last Stone Weight (LC #1046) — Easy
+   3. K Closest Points to Origin (LC #973) — Medium</code></pre><p><strong>Heap Essentials:</strong></p>
+<pre><code class="hljs plaintext">import heapq
+
+# MIN HEAP (default in Python)
+min_heap = []
+heapq.heappush(min_heap, 5)
+heapq.heappush(min_heap, 2)
+heapq.heappush(min_heap, 8)
+print(heapq.heappop(min_heap))  # 2 (smallest)
+
+# MAX HEAP (negate values!)
+max_heap = []
+heapq.heappush(max_heap, -5)
+heapq.heappush(max_heap, -2)
+heapq.heappush(max_heap, -8)
+print(-heapq.heappop(max_heap))  # 8 (largest)
+
+# TOP K ELEMENTS PATTERN
+def top_k_frequent(nums, k):
+    from collections import Counter
+    count = Counter(nums)
+    return heapq.nlargest(k, count.keys(), key=count.get)</code></pre><h3>Day 38 — Top K Pattern + More Heap</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Top K Frequent Elements (LC #347) — Medium (re-solve with heap)
+   2. Sort Characters by Frequency (LC #451) — Medium
+   3. Task Scheduler (LC #621) — Medium</code></pre><h3>Day 39 (Sunday) — Median from Stream + Practice</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Find Median from Data Stream (LC #295) — Hard ⭐
+   2. Merge K Sorted Lists (LC #23) — Hard ⭐
+   3. Reorganize String (LC #767) — Medium
+   4. Top K Frequent Words (LC #692) — Medium</code></pre><h3>Day 40–41 — Mixed Tree + Heap Practice</h3>
+<pre><code class="hljs plaintext">🏋️ Solve: 4–5 unsolved medium problems from Trees/Heaps
+Focus on problems you found hard</code></pre><h3>Day 42 — Week 6 Revision 🔁</h3>
+<blockquote>
+<h3>✅ Week 6 Checkpoint: <del>18 more problems (</del>113 total)</h3>
+</blockquote>
+<hr>
+<h2>Week 7: Graphs (Days 43–49)</h2>
+<h3>Day 43 — Graph Representation + BFS</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Graph types: directed, undirected, weighted
+   - Representations: adjacency list (use dict!) vs adjacency matrix
+   - BFS: use queue, level by level
+
+💻 Implement:
+   - Build graph from edge list
+   - BFS traversal
+
+🏋️ Solve:
+   1. Number of Islands (LC #200) — Medium ⭐
+   2. Clone Graph (LC #133) — Medium
+   3. Flood Fill (LC #733) — Easy</code></pre><p><strong>Graph Foundations:</strong></p>
+<pre><code class="hljs plaintext">from collections import deque, defaultdict
+
+# BUILD ADJACENCY LIST
+def build_graph(edges, directed=False):
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+        if not directed:
+            graph[v].append(u)
+    return graph
+
+# BFS
+def bfs(graph, start):
+    visited = set([start])
+    queue = deque([start])
+    while queue:
+        node = queue.popleft()
+        print(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+# DFS
+def dfs(graph, node, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(node)
+    print(node)
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)</code></pre><h3>Day 44 — DFS + Grid Problems</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Max Area of Island (LC #695) — Medium
+   2. Pacific Atlantic Water Flow (LC #417) — Medium
+   3. Surrounded Regions (LC #130) — Medium
+   4. Rotting Oranges (LC #994) — Medium ⭐</code></pre><h3>Day 45 — Cycle Detection</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Cycle detection in undirected graph (BFS/DFS)
+   - Cycle detection in directed graph (coloring: white/gray/black)
+
+🏋️ Solve:
+   1. Course Schedule (LC #207) — Medium ⭐
+   2. Course Schedule II (LC #210) — Medium ⭐
+   3. Graph Valid Tree (LC #261) — Medium (if available)</code></pre><h3>Day 46 (Sunday) — Topological Sort + Union Find</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Topological ordering: Kahn's algorithm (BFS) + DFS approach
+   - Union-Find (Disjoint Set): find, union, path compression
+
+🏋️ Solve:
+   1. Alien Dictionary (LC #269) — Hard (if available)
+   2. Number of Connected Components (LC #323) — Medium
+   3. Redundant Connection (LC #684) — Medium
+   4. Accounts Merge (LC #721) — Medium</code></pre><h3>Day 47 — Shortest Path</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Dijkstra's algorithm (weighted, no negative edges)
+   - BFS = shortest path in unweighted graphs
+
+🏋️ Solve:
+   1. Network Delay Time (LC #743) — Medium
+   2. Cheapest Flights Within K Stops (LC #787) — Medium
+   3. Word Ladder (LC #127) — Hard</code></pre><h3>Day 48 — More Graph Practice</h3>
+<pre><code class="hljs plaintext">🏋️ Solve: 4–5 unsolved graph mediums</code></pre><h3>Day 49 — Week 7 Revision 🔁</h3>
+<blockquote>
+<h3>✅ Week 7 Checkpoint: <del>20 more problems (</del>133 total)</h3>
+</blockquote>
+<hr>
+<hr>
+<h1>🔴 MONTH 3: Advanced Problem Solving (Days 50–70)</h1>
+<hr>
+<h2>Week 8: Greedy + Interval Problems (Days 50–56)</h2>
+<h3>Day 50 — Greedy Basics</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Greedy = make locally optimal choice at each step
+   - When does greedy work? (exchange argument / proof intuition)
+
+🏋️ Solve:
+   1. Jump Game (LC #55) — Medium ⭐
+   2. Jump Game II (LC #45) — Medium
+   3. Gas Station (LC #134) — Medium</code></pre><h3>Day 51 — Interval Problems</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - Sort by start time or end time
+   - Merge overlapping intervals
+   - Interval scheduling
+
+🏋️ Solve:
+   1. Merge Intervals (LC #56) — Medium ⭐
+   2. Insert Interval (LC #57) — Medium
+   3. Non-overlapping Intervals (LC #435) — Medium ⭐
+   4. Meeting Rooms II (LC #253) — Medium</code></pre><h3>Days 52–55 — More Greedy + Mixed Practice</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   - Hand of Straights (LC #846)
+   - Partition Labels (LC #763) ⭐
+   - Valid Parenthesis String (LC #678)
+   - Minimum Number of Arrows to Burst Balloons (LC #452)
+   - Plus 4–5 mixed problems from all topics</code></pre><h3>Day 56 — Week 8 Revision 🔁</h3>
+<blockquote>
+<h3>✅ Week 8 Checkpoint: <del>15 more problems (</del>148 total)</h3>
+</blockquote>
+<hr>
+<h2>Week 9: Dynamic Programming (Days 57–63)</h2>
+<h3>Day 57 — DP Introduction (1D)</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - What is DP? Recursion + memoization = top-down DP
+   - Tabulation = bottom-up DP
+   - Identify: overlapping subproblems + optimal substructure
+
+💻 Implement:
+   - Fibonacci: recursive → memoized → tabulated
+   - Climbing stairs
+
+🏋️ Solve:
+   1. Climbing Stairs (LC #70) — Easy ⭐ (re-solve with DP thinking)
+   2. Min Cost Climbing Stairs (LC #746) — Easy
+   3. House Robber (LC #198) — Medium ⭐</code></pre><p><strong>DP Framework:</strong></p>
+<pre><code class="hljs plaintext"># THE DP THOUGHT PROCESS:
+# 1. Define state: dp[i] = "what does index i represent?"
+# 2. Find relation: dp[i] = f(dp[i-1], dp[i-2], ...)
+# 3. Base case: dp[0] = ?, dp[1] = ?
+# 4. Build order: left to right? bottom to top?
+
+# EXAMPLE: House Robber
+# dp[i] = max money robbing houses 0..i
+# dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+#          ↑ skip i    ↑ rob i
+
+def rob(nums):
+    if len(nums) &lt;= 2:
+        return max(nums)
+    dp = [0] * len(nums)
+    dp[0] = nums[0]
+    dp[1] = max(nums[0], nums[1])
+    for i in range(2, len(nums)):
+        dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+    return dp[-1]</code></pre><h3>Day 58 — Classic 1D DP Problems</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. House Robber II (LC #213) — Medium
+   2. Longest Increasing Subsequence (LC #300) — Medium ⭐
+   3. Coin Change (LC #322) — Medium ⭐
+   4. Maximum Subarray (LC #53) — Medium ⭐ (Kadane's algorithm)</code></pre><h3>Day 59 — Knapsack Pattern</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - 0/1 Knapsack: take or skip each item
+   - Unbounded Knapsack: can take items multiple times
+   - Coin change = unbounded knapsack
+
+🏋️ Solve:
+   1. Partition Equal Subset Sum (LC #416) — Medium ⭐
+   2. Target Sum (LC #494) — Medium
+   3. Coin Change II (LC #518) — Medium</code></pre><h3>Day 60 (Sunday) — 2D DP</h3>
+<pre><code class="hljs plaintext">📖 Learn:
+   - DP on grids: dp[i][j] depends on dp[i-1][j] and dp[i][j-1]
+   - DP on strings: LCS, edit distance
+
+🏋️ Solve:
+   1. Unique Paths (LC #62) — Medium ⭐
+   2. Minimum Path Sum (LC #64) — Medium
+   3. Longest Common Subsequence (LC #1143) — Medium ⭐
+   4. Edit Distance (LC #72) — Medium ⭐</code></pre><h3>Day 61 — More String DP</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Longest Palindromic Substring (LC #5) — Medium ⭐
+   2. Palindromic Substrings (LC #647) — Medium
+   3. Word Break (LC #139) — Medium ⭐
+   4. Decode Ways (LC #91) — Medium</code></pre><h3>Day 62 — Advanced DP + Backtracking</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. N-Queens (LC #51) — Hard
+   2. Word Search II (LC #212) — Hard (Trie + backtracking)
+   3. Longest Increasing Path in Matrix (LC #329) — Hard</code></pre><h3>Day 63 — Week 9 Revision 🔁</h3>
+<pre><code class="hljs plaintext">Re-solve:
+   1. Coin Change (LC #322)
+   2. Longest Common Subsequence (LC #1143)
+   3. House Robber (LC #198)
+   4. Longest Increasing Subsequence (LC #300)</code></pre><blockquote>
+<h3>✅ Week 9 Checkpoint: <del>20 more problems (</del>168 total)</h3>
+</blockquote>
+<hr>
+<h2>Week 10: Mock Interviews + Final Revision (Days 64–70)</h2>
+<h3>Day 64 — Trie + Bit Manipulation (Bonus Topics)</h3>
+<pre><code class="hljs plaintext">🏋️ Solve:
+   1. Implement Trie (LC #208) — Medium ⭐
+   2. Single Number (LC #136) — Easy
+   3. Counting Bits (LC #338) — Easy
+   4. Number of 1 Bits (LC #191) — Easy</code></pre><h3>Day 65 — Mock Interview #1</h3>
+<pre><code class="hljs plaintext">⏱️ Pick 2 random medium problems
+   - Set a 45-minute timer
+   - Solve on paper/whiteboard first, then code
+   - Explain your approach OUT LOUD as if talking to interviewer</code></pre><h3>Day 66 — Mock Interview #2 + Weak Area Practice</h3>
+<pre><code class="hljs plaintext">⏱️ 2 more timed problems + revisit your weakest topic</code></pre><h3>Day 67 (Sunday) — Full Mock Interview #3 + #4</h3>
+<pre><code class="hljs plaintext">⏱️ Morning: 2 problems in 45 min (one Easy, one Medium)
+⏱️ Afternoon: 2 problems in 45 min (one Medium, one Hard attempt)
+   - Practice explaining:
+     1. What is my approach?
+     2. What is the time/space complexity?
+     3. Can I optimize?</code></pre><h3>Day 68 — Re-solve the 30 Most Important Problems</h3>
+<pre><code class="hljs plaintext">These are the ⭐ problems from the entire roadmap:
+
+Arrays:       Two Sum, Best Time to Buy Stock, Product of Array Except Self
+Sliding Win:  Longest Substring Without Repeating
+Hashing:      Group Anagrams, Longest Consecutive Sequence
+LinkedList:   Reverse LL, Merge Two Sorted, Linked List Cycle
+Stack:        Valid Parentheses, Daily Temperatures, Min Stack
+Binary Srch:  Search in Rotated Array, Koko Eating Bananas
+Recursion:    Subsets, Permutations, Combination Sum
+Trees:        Level Order, Max Depth, Validate BST, LCA, Invert Tree
+Heaps:        Kth Largest, Merge K Sorted Lists, Find Median
+Graphs:       Number of Islands, Course Schedule, Rotting Oranges
+Greedy:       Jump Game, Merge Intervals, Partition Labels
+DP:           Climbing Stairs, House Robber, Coin Change, LCS, LIS, Word Break</code></pre><h3>Day 69 — Mock Interview #5 + #6</h3>
+<pre><code class="hljs plaintext">⏱️ Final mock interviews
+   - 1 Easy + 1 Medium in 40 min
+   - 1 Medium + 1 Hard attempt in 50 min
+   - Record yourself if possible — watch for filler words, hesitation</code></pre><h3>Day 70 — Final Revision Day 🏁</h3>
+<pre><code class="hljs plaintext">📖 Re-read your entire pattern bible
+📖 Re-read all weekly cheat sheets
+📝 Write down your "Top 15 Patterns" on one page
+🎯 Confidence check: Can you solve any medium in 20–25 min?
+
+CELEBRATE! 🎉 You've completed the 70-day DSA journey!</code></pre><hr>
+<h1>📊 Final Summary</h1>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Days</th>
+<th>Topics</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Month 1: Foundation</strong></td>
+<td>1–28</td>
+<td>Arrays, Strings, Hashing, LL, Stack, Binary Search, Recursion</td>
+<td>~75</td>
+</tr>
+<tr>
+<td><strong>Month 2: Core DSA</strong></td>
+<td>29–49</td>
+<td>Trees, BST, Heaps, Graphs</td>
+<td>~58</td>
+</tr>
+<tr>
+<td><strong>Month 3: Advanced</strong></td>
+<td>50–70</td>
+<td>Greedy, Intervals, DP (1D+2D), Mock Interviews</td>
+<td>~47</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>70 days</strong></td>
+<td><strong>All major DSA topics</strong></td>
+<td><strong>~180 problems</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>📋 Your Tracking Spreadsheet Template</h2>
+<p>Create this in Google Sheets and fill it every day:</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Date</th>
+<th>Problem</th>
+<th>LC#</th>
+<th>Difficulty</th>
+<th>Topic</th>
+<th>Solved Alone?</th>
+<th>Time Taken</th>
+<th>Revisit?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Mar 5</td>
+<td>Running Sum</td>
+<td>1480</td>
+<td>Easy</td>
+<td>Array</td>
+<td>✅</td>
+<td>10 min</td>
+<td>No</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Mar 5</td>
+<td>Richest Customer</td>
+<td>1672</td>
+<td>Easy</td>
+<td>Array</td>
+<td>✅</td>
+<td>8 min</td>
+<td>No</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+<hr>
+<p>Ready to begin <strong>Day 1</strong> right now? I can walk you through the first problems step by step! 💪</p>
+
+  </article>
+</body>
+</html>
